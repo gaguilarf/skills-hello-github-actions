@@ -24,6 +24,8 @@ jobs:
 
     steps:
       - run: echo "Deploying to production server on branch $GITHUB_REF"
+        env:
+          First_Name: Mona
       - uses: actions/checkout@v4
       - name: npm install and build webpack
         run: |
