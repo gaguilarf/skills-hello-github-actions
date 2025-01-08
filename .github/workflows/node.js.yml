@@ -21,7 +21,7 @@ jobs:
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: npm install and build webpack
         run: |
           npm install
@@ -30,6 +30,12 @@ jobs:
         with:
           name: webpack artifacts
           path: public/
+      - name: Label when approved
+        uses: pullreminders/label-when-approved-action@main
+        env:
+         APPROVALS: "1"
+         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+         ADD_LABEL: "approved"
     
   test:
     runs-on: ${{ matrix.os }}
